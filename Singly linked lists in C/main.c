@@ -8,6 +8,7 @@ struct node {
 
 void printList(struct node * head) {
     int counter = 0;
+    printf("[");
     while (head != NULL) {
         if (counter>0) {
             printf(", ");
@@ -16,7 +17,7 @@ void printList(struct node * head) {
         head = head->next;
         counter++;
     }
-    printf("\n");
+    printf("]\n");
 }
 
 struct node * addNode(struct node * head, int val) {
@@ -80,6 +81,12 @@ void deleteNode(struct node ** head, int id) {
     }
 }
 
+void deleteList(struct node ** head) {
+    while ((*head != NULL)) {
+        deleteNode(head, 0);
+    }
+}
+
 int main()
 {
     struct node * list = NULL;
@@ -95,6 +102,8 @@ int main()
     deleteNode(&list, 3);
     printList(list);
     deleteNode(&list, 1);
+    printList(list);
+    deleteList(&list);
     printList(list);
     return 0;
 }
